@@ -4,10 +4,8 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'', views.HomeViewSet)
+router.register(r'logs', views.HomeViewSet)
 
-urlpatterns = [
-    path('authentication', include('authentication.urls')),
-]
+urlpatterns = []
 
 urlpatterns += router.urls
