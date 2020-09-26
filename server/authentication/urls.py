@@ -1,6 +1,6 @@
 from django.urls import path
 from authentication import views
-from .custom_token_response import MyTokenObtainPairView, MyTokenRefreshView
+from .token_response import MyTokenObtainPairView, MyTokenRefreshView
 
 
 app_name = 'authentication'

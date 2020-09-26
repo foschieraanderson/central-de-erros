@@ -31,7 +31,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 class MyTokenRefreshView(TokenRefreshView):
     """
-    Atualiza token de acesso do usuário
-    * Pega o token de refresh e retorna um novo token
+    Atualiza o token de acesso do usuário
+    * Pega o token enviado e retorna um novo token
     de acesso se o primeiro for válido
     """

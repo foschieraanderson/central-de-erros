@@ -9,9 +9,10 @@ from drf_yasg.utils import swagger_auto_schema
 
 class RegisterView(generics.GenericAPIView):
     """
-    Cria novo usuário
+    Cria um novo usuário
     * Criação de novo usuário
     """
+    
     serializer_class = RegisterSerializer
 
     @swagger_auto_schema(responses={
@@ -29,6 +30,11 @@ class RegisterView(generics.GenericAPIView):
 
 
 class ListUsersView(APIView):
+    """
+    Lista todos os usuários
+    * É preciso estar autenticado como super usuário
+    para visualizar (is_staff=True, is_superuser=True).
+    """
 
     permission_classes = [
         permissions.IsAuthenticated,
@@ -42,18 +48,17 @@ class ListUsersView(APIView):
         403: 'Você não possui permissão para visualizar',
     })
     def get(self, request):
-        """
-        Lista todos os usuários
-        * É preciso estar autenticado como super usuário
-        para visualizar (is_staff=True, is_superuser=True).
-        """
-
         queryset = User.objects.all()
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
 class SingleUserView(APIView):
+    """
+    Lista os dados de um usuário
+    * É preciso estar autenticado como super usuário
+    para visualizar (is_staff=True, is_superuser=True).
+    """
 
     permission_classes = [
         permissions.IsAuthenticated,
@@ -68,11 +73,6 @@ class SingleUserView(APIView):
         404: 'Não encontrado'
     })
     def get(self, request, pk):
-        """
-        Lista dados de um usuário
-        * É preciso estar autenticado como super usuário
-        para visualizar (is_staff=True, is_superuser=True).
-        """
         queryset = get_object_or_404(User, pk=pk)
         serializer = UserSerializer(queryset)
         return Response(serializer.data)
