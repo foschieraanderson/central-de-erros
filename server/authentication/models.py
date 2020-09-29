@@ -1,13 +1,15 @@
+import re
+
 from django.db import models
+from django.core import validators
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
-    PermissionsMixin,
+    PermissionsMixin
 )
 
-
 class UserManager(BaseUserManager):
-
+    
     def create_user(self, username, email, password=None):
         """Criando e salvando novo usuário no banco de dados"""
         if username is None:
@@ -21,7 +23,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password=None):
-        """Criando super usuário"""
+        """Criando um super usuário"""
         if password is None:
             raise TypeError('Senha não pode ser vazio.')
 
@@ -31,10 +33,19 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-
 class User(AbstractBaseUser, PermissionsMixin):
     """User model customizado. Usa email em vez de username para autenticar"""
-    username = models.CharField(max_length=255, unique=True, db_index=True)
+    username = models.CharField(
+        'Usuário', max_length=30, unique=True, validators=[
+            validators.RegexValidator(
+                re.compile('^[\w.@+-]+$'),
+                'Informe um nome de usuário válido. '
+                'Este valor deve conter apenas letras, números '
+                'e os caracteres: @/./+/_ .'
+                , 'invalid'
+            )
+        ], help_text='Um nome curto que será usado para identificá-lo de forma única na plataforma'
+    )
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     created_at = models.DateField(auto_now_add=True)
     is_staff = models.BooleanField(default=False)
