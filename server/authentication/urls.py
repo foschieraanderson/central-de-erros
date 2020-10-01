@@ -1,6 +1,6 @@
 from django.urls import path
 
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from .custom_token import MyObtainJSONWebToken, MyRefreshJSONWebToken
 
 from . import views
 
@@ -11,8 +11,8 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
 
     # Endpoints protegidas para usuários registrados 
-    path('token/', obtain_jwt_token, name='obtain_token'),
-    path('token/refresh/', refresh_jwt_token, name='refresh_token'),
+    path('token/', MyObtainJSONWebToken.as_view(), name='obtain_token'),
+    path('token/refresh/', MyRefreshJSONWebToken.as_view(), name='refresh_token'),
 
     # Endpoints protegidas para super usuários 
     path('users/', views.ListUsersView.as_view(), name='users-list'),

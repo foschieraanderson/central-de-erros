@@ -1,18 +1,22 @@
 from rest_framework import generics, status, permissions
-from .serializers import RegisterSerializer, UserSerializer
-from rest_framework.response import Response
-from .models import User
 from rest_framework.views import APIView
+from rest_framework.response import Response
+
 from django.shortcuts import get_object_or_404
+
 from drf_yasg.utils import swagger_auto_schema
 
+from .models import User
+from .serializers import UserSerializer, RegisterSerializer
 
-class RegisterView(generics.GenericAPIView):
+class RegisterView(generics.CreateAPIView):
     """
-    Cria um novo usuário
-    * Criação de novo usuário
-    """
+    Registra um novo usuário
     
+    * Cria um novo usuário no banco de dados.
+    """
+
+    permission_classes = [permissions.AllowAny]
     serializer_class = RegisterSerializer
 
     @swagger_auto_schema(responses={
@@ -29,11 +33,11 @@ class RegisterView(generics.GenericAPIView):
         return Response(user_data, status.HTTP_201_CREATED)
 
 
-class ListUsersView(APIView):
+class ListUsersView(generics.ListAPIView):
     """
-    Lista todos os usuários
-    * É preciso estar autenticado como super usuário
-    para visualizar (is_staff=True, is_superuser=True).
+        Lista os dados de todos os usuários
+
+        * Apenas super usuários podem vizualizar (is_staff=True, is_superuser=True).
     """
 
     permission_classes = [
@@ -52,14 +56,12 @@ class ListUsersView(APIView):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
-
-class SingleUserView(APIView):
+class DetailUserView(APIView):
     """
-    Lista os dados de um usuário
-    * É preciso estar autenticado como super usuário
-    para visualizar (is_staff=True, is_superuser=True).
+        Lista os dados de um único usuário
+        
+        * Apenas super usuários podem vizualizar (is_staff=True, is_superuser=True).
     """
-
     permission_classes = [
         permissions.IsAuthenticated,
         permissions.IsAdminUser,
