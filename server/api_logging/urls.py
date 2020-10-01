@@ -24,12 +24,11 @@ schema_view = get_schema_view(
 urlpatterns = [
     # App Admin
     path('admin/', admin.site.urls),
+    # Endpoints de logs
+    path('api/v1/', include('logs.urls')),
     # Endpoints de authenticação e usuários
     path('api/v1/auth/', include('authentication.urls')),
-    # Endpoints de logs
-    path('api/v1/logs/', include('logs.urls')),
-
-    #Documentação
+    # Endpoints de Documentação
     path('api/v1/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/v1/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

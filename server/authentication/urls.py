@@ -15,6 +15,6 @@ urlpatterns = [
     path('token/refresh/', MyRefreshJSONWebToken.as_view(), name='refresh_token'),
 
     # Endpoints protegidas para super usuários 
-    path('users/', views.ListUsersView.as_view(), name='users-list'),
-    path('users/<int:pk>/', views.DetailUserView.as_view(), name='user-detail'),
+    path('users/', views.UserListView.as_view(), name='users-list'),
+    path('users/<int:pk>/', views.UserDetailView.as_view(), name='user-detail'),
 ]

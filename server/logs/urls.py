@@ -1,11 +1,12 @@
-from django.urls import include, path
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 
 from . import views
 
-router = DefaultRouter()
-router.register(r'', views.HomeViewSet)
+app_name = 'logs'
 
-urlpatterns = []
-
-urlpatterns += router.urls
+urlpatterns = [
+    # Endpoints protegidas somente para usuários registrados acessarem
+    path('logs/', views.LogListCreateView.as_view(), name='logs-list'),
+    path('logs/<int:pk>', views.LogDetailView.as_view(), name='log-detail'),
+    path('logs/filters', views.LogsFilterView.as_view(), name='log-filter'),
+]

@@ -33,7 +33,7 @@ class RegisterView(generics.CreateAPIView):
         return Response(user_data, status.HTTP_201_CREATED)
 
 
-class ListUsersView(generics.ListAPIView):
+class UserListView(generics.ListAPIView):
     """
         Lista os dados de todos os usuários
 
@@ -56,7 +56,7 @@ class ListUsersView(generics.ListAPIView):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
-class DetailUserView(APIView):
+class UserDetailView(APIView):
     """
         Lista os dados de um único usuário
         
