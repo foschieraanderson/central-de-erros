@@ -28,6 +28,9 @@ urlpatterns = [
     path('api/v1/', include('logs.urls')),
     # Endpoints de authenticação e usuários
     path('api/v1/auth/', include('authentication.urls')),
+
+    path('', lambda request: redirect('api/v1/swagger/', permanent=False)),
+
     # Endpoints de Documentação
     path('api/v1/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/v1/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
