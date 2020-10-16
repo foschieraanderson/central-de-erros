@@ -1,22 +1,15 @@
 <template>
-    <div>
-        <h2>Login</h2>
+    <section class="form-container">
+        <h1>Login</h1>
         <form @submit="handleSubmit">
-            <div>{{ erro }}</div>
-            <div>
-                <label for="email">E-mail</label>
-                <input v-model="email" type="email" name="email" id="email">
-            </div>
-            <div>
-                <label for="password">Senha</label>
-                <input v-model="password" type="password" name="password" id="password">
-            </div>
-            <div>
-                <button>Entrar</button>
+            <input v-model="email" type="email" name="email" id="email" placeholder="e-mail">
+            <input v-model="password" type="password" name="password" id="password" placeholder="password">
+            <div class="form-buttons">
+                <button type="submit">Login</button>
                 <router-link to="/register">Registrar-se</router-link>
             </div>
         </form>
-    </div>
+    </section>
 </template>
 
 <script>

@@ -1,25 +1,15 @@
 <template>
-    <div>
-        <h2>Register</h2>
+    <section class="form-container">
+        <h1>Cadastro</h1>
         <form @submit="handleRegister">
-            <div>
-                <label for="username">Username</label>
-                <input v-model="username" type="username" name="username" id="username">
-            </div>
-            <div>
-                <label for="email">E-mail</label>
-                <input v-model="email" type="email" name="email" id="email">
-            </div>
-            <div>
-                <label for="password">Senha</label>
-                <input v-model="password" type="password" name="password" id="password">
-            </div>
-            <div>
-                <button>Registrar</button>
-                <router-link to="/login">Login</router-link>
+            <input v-model="username" type="username" name="username" id="username" placeholder="username">
+            <input v-model="email" type="email" name="email" id="email" placeholder="e-mail">
+            <input v-model="password" type="password" name="password" id="password" placeholder="password">
+            <div class="form-buttons">
+                <button type="submit">Cadastrar</button>
             </div>
         </form>
-    </div>
+    </section>
 </template>
 
 <script>
