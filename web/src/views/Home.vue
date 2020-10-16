@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <ul>
+      <li v-for="log in logs" :key="log.id" >Título: {{ log.title }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+
+import api from "../services/api";
+import { authHeader } from "../services/AuthHeader";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      logs: [],
+    }
+  },
+  mounted() {
+    const token = authHeader();
+
+    api.get("logs/", { headers: token })
+    .then(res => {
+      this.logs = res.data;
+    })
+  },
+
 };
 </script>

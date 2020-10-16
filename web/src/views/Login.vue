@@ -13,7 +13,7 @@
             </div>
             <div>
                 <button>Entrar</button>
-                <a href="#">Registrar-se</a>
+                <router-link to="/register">Registrar-se</router-link>
             </div>
         </form>
     </div>
@@ -21,9 +21,7 @@
 
 <script>
 
-import axios from 'axios';
-
-const baseURL = 'http://127.0.0.1:8000/api/v1/';
+import api from "../services/api";
 
 export default {
     name: "Login",
@@ -41,16 +39,16 @@ export default {
 
             const options = {"email": this.email, "password": this.password};
         
-            axios.post(baseURL + "auth/token/", options)
+            api.post("auth/token/", options)
             .then(res => {
-                console.log(res.data.token);
+                console.log(res);
                 if (res.data.token) {
                     localStorage.setItem("user", JSON.stringify(res.data));
                     this.$router.push('/');
                 }
             })
             .catch(err => {
-                this.erro = err.data.email;
+                console.log(err);
             })
         }
     },

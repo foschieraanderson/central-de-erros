@@ -1,4 +1,4 @@
-<<template>
+<template>
     <div>
         <h2>Register</h2>
         <form>
@@ -13,8 +13,8 @@
                 <div>Senha é obrigatório</div>
             </div>
             <div>
-                <button>Entrar</button>
-                <a href="#">Registrar-se</a>
+                <button>Registrar</button>
+                <router-link to="/login">Login</router-link>
             </div>
         </form>
     </div>
