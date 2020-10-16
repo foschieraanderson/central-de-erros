@@ -41,14 +41,13 @@ export default {
         
             api.post("auth/token/", options)
             .then(res => {
-                console.log(res);
                 if (res.data.token) {
                     localStorage.setItem("user", JSON.stringify(res.data));
                     this.$router.push('/');
                 }
             })
-            .catch(err => {
-                console.log(err);
+            .catch(() => {
+                alert("Erro ao efetuar o login, tente novamente.");
             })
         }
     },
