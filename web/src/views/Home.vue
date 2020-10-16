@@ -1,4 +1,5 @@
 <template>
+  <Sidebar />
   <div class="home">
     <ul>
       <li v-for="log in logs" :key="log.id" >Título: {{ log.title }}</li>
@@ -11,8 +12,13 @@
 import api from "../services/api";
 import { authHeader } from "../services/AuthHeader";
 
+import Sidebar from "../components/Sidebar.vue";
+
 export default {
   name: "Home",
+  components: {
+    Sidebar
+  },
   data() {
     return {
       logs: [],
