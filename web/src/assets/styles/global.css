@@ -38,10 +38,15 @@
     margin-bottom: 20px;
     padding: 10px;
     font-size: 18px;
+    font-family: 'Source Code Pro', monospace;
 }
 
 .form-container form input:focus {
     outline: none;
+}
+
+.form-container form ul {
+    display: inline-block;
 }
 
 .form-container form .form-buttons {
@@ -56,6 +61,7 @@
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
+    font-family: 'Source Code Pro', monospace;
     font-size: 20px;
     font-weight: 300;
     cursor: pointer;
@@ -66,4 +72,25 @@
     color: #aaa;
     font-size: 20px;
     margin-top: 20px;
+}
+
+.form-container form .badge-erros {
+    width: 100%;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(255, 0, 0, 0.3);
+    color: rgba(255, 0, 0, 1);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 15px;
+}
+
+.form-container form ul .label-erros {
+    color: rgba(255, 0, 0, 1);
+    margin-left: 20px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 15px;
+}
+
+.form-container form ul .label-erros:last-child {
+    margin-bottom: 20px;
 }
