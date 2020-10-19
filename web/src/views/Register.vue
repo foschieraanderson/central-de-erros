@@ -34,10 +34,9 @@ export default {
             errosUsername: [],
             errosEmail: [],
             errosPassword: [],
-            username:'',
-            email:'',
-            password:'',
-            submitted: false
+            username:"",
+            email:"",
+            password:""
         }
     },
     methods: {

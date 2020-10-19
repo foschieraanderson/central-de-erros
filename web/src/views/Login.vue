@@ -31,8 +31,7 @@ export default {
             errosEmail: [],
             errosPassword: [],
             email:"",
-            password:"",
-            submitted: false
+            password:""
         };
     },
     methods: {
