@@ -1,3 +1,5 @@
+from .serializers import UserSerializer
+
 from rest_framework_jwt.views import ObtainJSONWebToken, RefreshJSONWebToken
 
 class MyObtainJSONWebToken(ObtainJSONWebToken):
