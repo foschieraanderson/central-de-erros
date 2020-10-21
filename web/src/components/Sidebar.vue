@@ -1,8 +1,8 @@
 <template>
     <section id="sidebar">
       <div class="sidebar-box-info">
-        <h2>Bem vindo {{ username }}.</h2>
-        <p>Seu token é: {{ token }}</p>
+        <h2>Bem vindo {{ username }},</h2>
+        <p>Seu token é: <small>{{ token }}</small></p>
       </div>
       <div class="sidebar-box-profile">
         <button @click="handleLogout">Sair</button>
