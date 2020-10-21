@@ -1,7 +1,7 @@
 <template>
-  <Sidebar />
+  <!-- <Sidebar :username="user.user.username" :token="user.token" /> -->
+  <Sidebar :username="user.user.username" />
   <div class="home">
-    <p>Bem vindo {{ user.token }}</p>
     <ul>
       <li v-for="log in logs" :key="log.id" >Título: {{ log.title }}</li>
     </ul>
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      user: localStorage.getItem("user"),
+      user: JSON.parse(localStorage.getItem("user")),
       logs: [],
     }
   },
