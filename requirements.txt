@@ -1,0 +1,6 @@
+Django==3.1.1
+django-cors-headers==3.5.0
+djangorestframework==3.11.1
+djangorestframework-jwt==1.11.0
+drf-yasg==1.17.1
+pytest==6.1.2
