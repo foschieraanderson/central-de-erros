@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    command: gunicorn --workers=2 --bind=0.0.0.0:8000 api_logging.wsgi:application
+    # command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/www
+    environment:
+      - SECRET_KEY=w4h*@y492c((3+knuy)o5c^@7x#xhrkn-0d8gh1^u$vtm+-_4o
+      - DEBUG_VALUE=True  # Deixe vazio para 'False'
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
