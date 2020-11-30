@@ -2,12 +2,6 @@ from django.db import models
 
 class Log(models.Model):
 
-    ORIGIN_CHOICES = [
-        ('Produção', 'Produção'),
-        ('Homologação', 'Homologação'),
-        ('Dev', 'Dev')
-    ]
-
     LEVEL_CHOICES = [
         ('Debug', 'Debug'),
         ('Error', 'Error'),
@@ -16,7 +10,7 @@ class Log(models.Model):
 
     title       = models.CharField('Título', max_length=50, blank=False, null=False)
     description = models.TextField('Descrição')
-    origin      = models.CharField('Origem', max_length=11, choices=ORIGIN_CHOICES, default='Produção')
+    origin      = models.GenericIPAddressField(protocol='IPv4')
     level       = models.CharField('Nível', max_length=7, choices=LEVEL_CHOICES, default='Error')
     events      = models.IntegerField('Eventos')
     archived    = models.BooleanField('Arquivado', default=False)
