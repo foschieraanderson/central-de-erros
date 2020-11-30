@@ -37,7 +37,7 @@ class AuthenticationModelTests(TestCase):
     def test_create_new_superuser(self):
         """Teste para criação de um novo super usuário"""
         username = 'superuser'
-        email = 'superuser@email.COM'
+        email = 'superuser@email.com'
         password = '12345678'
         user = get_user_model().objects.create_superuser(
             username=username,
