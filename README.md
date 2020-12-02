@@ -23,4 +23,6 @@ A arquitetura do projeto é formada por:
  - deve consumir a API do produto
  - desenvolvida na forma de uma Single Page Application
 
+![Exemplo](assets/API-Central-de-Erros.jpg)
+
 ## Tecnologias Usadas
