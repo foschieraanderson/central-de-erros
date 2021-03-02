@@ -1,52 +1,30 @@
-from django.test import TestCase, Client
-from django.urls import reverse
+import pytest
+
 from django.contrib.auth import get_user_model
+from django.urls import reverse
+
 from logs.models import Log
 
-
-class TestAdminSite(TestCase):
-
-    def setUp(self):
-        self.client = Client()
-        self.client = Client()
-        self.admin_user = get_user_model().objects.create_superuser(
-            username='admin',
-            email='admin@email.com',
-            password='12345678'
-        )
-        self.client.force_login(self.admin_user)
-        self.user = get_user_model().objects.create_user(
-            username='teste',
-            email='teste@email.com',
-            password='12345678'
-        )
-        self.log = Log.objects.create(
-            title='log',
-            description='descrição para teste',
-            level='DEBUG',
-            origin='127.0.0.1',
-            events=200,
-            archived=False
-        )
-
-    def test_create_log_admin(self):
-        """Teste para página de criação de log no admin"""
+@pytest.mark.django_db
+def test_create_log_admin(client, user_admin):
+        """ Teste para view de criação de log no admin """
         url = reverse('admin:logs_log_add')
-        res = self.client.get(url)
+        response = client.get(url)
 
-        self.assertEqual(res.status_code, 200)
+        assert response.status_code == 200
 
-    def test_change_log_admin(self):
-        """Teste para página de edição de log no admin"""
-        url = reverse('admin:logs_log_change', args=[self.log.id])
-        res = self.client.get(url)
+@pytest.mark.django_db
+def test_change_log_admin(client, user_admin, log_create):
+        """ Teste para view de edição de log no admin """
+        url = reverse('admin:logs_log_change', args=[log_create.id])
+        response = client.get(url)
 
-        self.assertEqual(res.status_code, 200)
+        assert response.status_code == 200
 
-    def test_listed_log_admin(self):
-        """Teste para página que lista os logs"""
+@pytest.mark.django_db
+def test_listed_log_admin(client, user_admin):
+        """ Teste para view que lista os logs no admin """
         url = reverse('admin:logs_log_changelist')
-        res = self.client.get(url)
+        response = client.get(url)
 
-        self.assertEqual(res.status_code, 200)
-        self.assertContains(res, self.log.title)
+        assert response.status_code == 200

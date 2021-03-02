@@ -1,0 +1,5 @@
+*.venv/
+server/api_logging/settings/dev.py
+*__pycache__
+.coverage
+*_cache
