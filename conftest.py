@@ -1,5 +1,6 @@
 import pytest
 
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 from logs.models import Log
@@ -17,7 +18,7 @@ def user_data():
 def user_create(user_data):
     """ Cria um usuário no banco de dados e retorna o objeto criado """
     user_model = get_user_model()
-    user = user_model.objects.create(**user_data)
+    user = user_model.objects.create_user(**user_data)
     return user
 
 @pytest.fixture
@@ -45,3 +46,9 @@ def log_create(log_data):
     """ Cria um log no banco de dados e retorna o objeto criado """
     log = Log.objects.create(**log_data)
     return log
+
+@pytest.fixture
+def user_token(client, user_create):
+    url = reverse('authentication:obtain_token')
+    user_token = client.post(url, {"email": "admin@email.com", "password": "12345678"})
+    return user_token.json()['token']
