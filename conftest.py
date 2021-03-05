@@ -50,5 +50,13 @@ def log_create(log_data):
 @pytest.fixture
 def user_token(client, user_create):
     url = reverse('authentication:obtain_token')
+    client.force_login(user_create)
     user_token = client.post(url, {"email": "admin@email.com", "password": "12345678"})
-    return user_token.json()['token']
+    return user_token
+
+@pytest.fixture
+def superuser_token(client, user_admin):
+    url = reverse('authentication:obtain_token')
+    client.force_login(user_admin)
+    superuser_token = client.post(url, {"email": "admin@email.com", "password": "12345678"})
+    return superuser_token

@@ -30,3 +30,11 @@ def test_user_create_token_view(client, user_data):
   response = client.post(url, data)
   assert response.status_code == 200
   assert 'token' in response.data
+
+@pytest.mark.django_db
+def test_user_list_view(client, superuser_token):
+  url = reverse('authentication:users-list')
+  token = f"JWT {superuser_token.json()['token']}"
+  headers = {"Content-Type": "application/json", "Authorization": token}
+  response = client.get(url, headers=headers)
+  assert response.status_code == 200
