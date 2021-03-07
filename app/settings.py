@@ -66,7 +66,7 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 
-ROOT_URLCONF = 'api_logging.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'api_logging.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 
