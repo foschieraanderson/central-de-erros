@@ -1,5 +1,4 @@
 import pytest
-import json
 
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -34,7 +33,7 @@ def test_user_create_token_view(client, user_data):
 @pytest.mark.django_db
 def test_user_list_view(client, superuser_token):
   url = reverse('authentication:users-list')
-  token = f"JWT {superuser_token.json()['token']}"
+  token = f"JWT {superuser_token.data['token']}"
   headers = {"Content-Type": "application/json", "Authorization": token}
   response = client.get(url, headers=headers)
   assert response.status_code == 200

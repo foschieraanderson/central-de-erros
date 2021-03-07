@@ -15,7 +15,7 @@ def test_create_new_log(log_data):
 def test_change_log(client, log_create):
   """ Teste para edição de logs. """
   log = Log.objects.get(pk=log_create.id)
-  assert log.title == 'log'
+  assert log.title == 'Log'
   Log.objects.update(title='Log Update', id=log.id)
   log_update = Log.objects.get(pk=log_create.id)
   assert log_update.title == 'Log Update'
