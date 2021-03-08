@@ -8,8 +8,8 @@ services:
     volumes:
       - .:/www
     environment:
-      - SECRET_KEY=
-      - DEBUG_VALUE=  # Deixe vazio para 'False'
+      - SECRET_KEY=YOUR_SECRET_KEY
+      - DEBUG_VALUE=True  # Deixe vazio para 'False'
     ports:
       - 8000:8000
     depends_on:
@@ -19,8 +19,9 @@ services:
   db:
     image: postgres:13
     environment:
-      - POSTGRES_USER=
-      - POSTGRES_PASSWORD=
+      - POSTGRES_NAME=DB_NAME
+      - POSTGRES_USER=DB_USER
+      - POSTGRES_PASSWORD=DB_PASSWORD
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
