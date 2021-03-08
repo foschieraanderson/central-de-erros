@@ -1,6 +1,5 @@
 import pytest
 
-import requests
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
@@ -42,20 +41,6 @@ def test_log_detail_view(client, user_token, log_create):
   response = client.get(url, headers=headers)
   assert response.status_code == 200
   assert response.data['id'] == log_create.id
-
-@pytest.mark.django_db
-def test_log_update_partial_view(client, user_token, log_create):
-  """ Teste na view de edição de um log """
-  url = "http://127.0.0.1:8000/api/v1/logs/"+str(log_create.id)
-  token = f"JWT {user_token.data['token']}"
-  headers = {"Content-Type": "application/json", "Authorization": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6ImZvc2NoaWVyYWFuZGVyc29uQGdtYWlsLmNvbSIsImV4cCI6MTYxNTE5MTM0MiwiZW1haWwiOiJmb3NjaGllcmFhbmRlcnNvbkBnbWFpbC5jb20iLCJvcmlnX2lhdCI6MTYxNTAxODU0Mn0.nhz9nIC8Sn_chz3qorLrDEr97rPBiHf1ldwolSGU5pY"}
-  data = {
-    "title": "Log partial update",
-    "description": "Descrição do Log partial update",
-  }
-  response = requests.patch(url, json=data, headers=headers)
-  assert response.status_code == 202
-  assert response.json()['title'] == data['title']
 
 @pytest.mark.django_db
 def test_log_delete_view(client, user_token, log_create):

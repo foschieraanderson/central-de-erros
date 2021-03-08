@@ -44,7 +44,7 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 
   ```sh
   
-  git clone https://github.com/foschieraanderson/central-de-erros.git
+    $ git clone https://github.com/foschieraanderson/central-de-erros.git
 
   ```
 
@@ -65,7 +65,7 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
     # Cole a sua secret_key aqui
     - SECRET_KEY=YOUR_SECRET_KEY
     # Configure as credencias do banco de dados
-    - POSTGRES_NAME=YOUR_DB_NAME
+    - POSTGRES_DB=YOUR_DB_NAME
     - POSTGRES_USER=YOUR_DB_USER
     - POSTGRES_PASSWORD=YOUR_DB_PASSWORD
 
@@ -89,10 +89,24 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
   ```
 
 - Rodando o projeto
+  
   ```sh
-  # Execute o seguinte comando no seu terminal
+  # Fazendo build do projeto e subindo a máquina docker
 
-  $ docker-compose up -d
+   $ docker-compose up --build -d
+
+  ``` 
+
+- Criando as tabelas no banco de dados
+  
+  ```sh
+  # Gravando as alterações
+
+   $ docker-compose exec web python manage.py makemigrations
+
+  # Gerando as tabelas
+
+   $ docker-compose exec web python manage.py migrate
 
   ``` 
 
@@ -101,7 +115,8 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 - Rodando os testes
 
   ```sh
-  # Execute o seguinte comando no seu terminal
+
+  # Rodando a suíte de tests com pytest
 
   $ docker-compose exec web pytest
 
@@ -122,7 +137,7 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 * [Gunicorn](https://gunicorn.org)
 
 ## :page_with_curl: Licence
-This project is under the MIT license. See the [LICENSE](./LICENSE) for more information.
+Este projeto está sob a licença do MIT. Consulte a [LICENSE](./LICENSE) para obter mais informações.
 
 ---
 

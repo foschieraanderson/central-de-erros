@@ -19,7 +19,7 @@ services:
   db:
     image: postgres:13
     environment:
-      - POSTGRES_NAME=YOUR_DB_NAME
+      - POSTGRES_DB=YOUR_DB_NAME
       - POSTGRES_USER=YOUR_DB_USER
       - POSTGRES_PASSWORD=YOUR_DB_PASSWORD
     volumes:
