@@ -56,7 +56,7 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
   # gerando SECRET_KEY
     $ python -c "import secrets; print(secrets.token_urlsafe())"
   ```
-- Entrando no diretório do projeto edite o arquivo **docker-compose.yml**
+- No diretório do projeto edite o arquivo **docker-compose.yml**
   
   ```sh
 
@@ -114,6 +114,7 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 * [Django](https://www.djangoproject.com)
 * [Django Rest Framework](https://www.django-rest-framework.org)
 * [JWT - Json Web Token](https://jwt.io)
+* [Postgres](https://www.postgresql.org)
 * [Pytest](https://docs.pytest.org/en/stable)
 * [Coverage](https://coverage.readthedocs.io/en/coverage-5.5)
 * [Swagger](https://swagger.io)
